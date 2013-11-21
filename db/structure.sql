@@ -101,6 +101,13 @@ ALTER TABLE ONLY meters
 
 
 --
+-- Name: index_on_meters_location; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_on_meters_location ON meters USING gist (st_geographyfromtext((((('SRID=4326;POINT('::text || longitude) || ' '::text) || latitude) || ')'::text)));
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -116,3 +123,5 @@ SET search_path TO "$user",public;
 INSERT INTO schema_migrations (version) VALUES ('20131121041414');
 
 INSERT INTO schema_migrations (version) VALUES ('20131121041946');
+
+INSERT INTO schema_migrations (version) VALUES ('20131121043015');
